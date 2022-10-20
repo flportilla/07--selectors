@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { CountriesRoutingModule } from './countries-routing.module';
 import { SelectorPageComponent } from './pages/selector-page/selector-page.component';
@@ -11,7 +12,8 @@ import { SelectorPageComponent } from './pages/selector-page/selector-page.compo
   ],
   imports: [
     CommonModule,
-    CountriesRoutingModule
+    ReactiveFormsModule,
+    CountriesRoutingModule,
   ]
 })
 export class CountriesModule { }

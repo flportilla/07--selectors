@@ -1,1 +1,66 @@
-<p>selector-page works!</p>
+<h1 class="mt-5">Nested selectors</h1>
+<hr>
+
+<form [formGroup]="myForm" (ngSubmit)="save()">
+
+    <!-- Region -->
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label">Continent: </label>
+            <select 
+                class="form-control"
+                formControlName="region"
+            >
+                <option value=""> -- Select continent -- </option>
+                <option [value]="region | lowercase" *ngFor="let region of regions"> {{ region }} </option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Country -->
+    <div class="row mb-3" *ngIf="countries.length !== 0">
+        <div class="col">
+            <label class="form-label">Country: </label>
+            <select 
+                class="form-control"
+                formControlName="country"
+            >
+                <option value=""> -- Select country -- </option>
+                <option [value]="country.alpha3Code | lowercase" *ngFor="let country of countries"> {{ country.name }} </option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Border -->
+    <div class="row mb-3" *ngIf="borders?.length !== 0">
+        <div class="col">
+            <label class="form-label">Borders: </label>
+            <select 
+                class="form-control"
+                formControlName="border"
+            >
+                <option value=""> -- Select border country -- </option>
+                <option [value]="borderCountry | lowercase" *ngFor="let borderCountry of borders"> {{ borderCountry }} </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="loading">
+        <div class="col">
+            <div class="alert alert-primary">
+                Loading...
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-primary float-end">Select</button>
+        </div>
+    </div>
+
+</form>
+
+<h3 class="mt-3">Form</h3>
+<pre>Valid: {{ myForm.valid }}</pre>
+<pre>Value: {{ myForm.value | json }}</pre>
